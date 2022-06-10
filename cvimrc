@@ -1,0 +1,23 @@
+" Clipboard Copy
+copyText (text) -> {{
+  Clipboard.copy(text);
+  Status.setMessage('copied: ' + text, 2);
+}}
+copyUrl (format) -> {{
+  let text = format.replace("%URL%", location.href).replace("%TITLE%", document.title);
+  Clipboard.copy(text);
+  Status.setMessage('copied: ' + text, 2);
+}}
+copyTitleUrlForBacklog (format) -> {{
+  let text = format.replace("%URL%", location.href).replace("%TITLE%", document.title);
+  Clipboard.copy(text);
+  Status.setMessage('copied: ' + text, 2);
+}}
+unmap s d e W w S f F
+map e createHint
+map f goToInput
+map F goToLastInput
+map w :call copyUrl('%TITLE%')<CR>
+map W :call copyUrl('%URL%')<CR>
+map <C-j> :call copyTitleUrlForBacklog('[[%TITLE%:%URL%]]')<CR>
+let blacklists = ["https://mail.google.com/*","https://calendar.google.com/*","https://www.youtube.com/*","https://cacoo.com/*","https://sandbox.dev-data-cast.net/*","https://docs.google.com/*"]
